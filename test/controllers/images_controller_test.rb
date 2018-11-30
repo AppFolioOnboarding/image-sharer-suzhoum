@@ -30,4 +30,14 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select 'h1', text: 'New Image'
     assert_select '#error_explanation', count: 1
   end
+
+  def test_show
+    image = Image.create(image_url: 'http://foo.png')
+    get image_path(image)
+
+    assert_response :ok
+    assert_select 'img' do
+      assert_select '[src=?]', 'http://foo.png'
+    end
+  end
 end
