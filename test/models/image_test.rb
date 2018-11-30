@@ -8,6 +8,6 @@ class ImageTest < ActiveSupport::TestCase
 
   def test_image__invalid
     image = Image.new(image_url: 'fake.jpg')
-    refute_predicate image, :valid?
+    assert_not_predicate image, :valid?
   end
 end
