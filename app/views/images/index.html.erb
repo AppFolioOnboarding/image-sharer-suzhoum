@@ -1,0 +1,10 @@
+<%= link_to("Link to submit new image", new_image_path) %>
+
+<h1>Listing Images</h1>
+
+  <% @images.each do |image| %>
+    <tr>
+      <td><%= image_tag image.image_url, class: "image-preview" %></td>
+    </tr>
+  <% end %>
+</table>

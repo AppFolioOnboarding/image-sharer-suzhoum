@@ -40,4 +40,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       assert_select '[src=?]', 'http://foo.png'
     end
   end
+
+  def test_display
+    Image.create!(image_url: 'http://abc.png', created_at: 5.minutes.ago)
+    Image.create!(image_url: 'https://dfs.jpg')
+
+    get root_path
+    assert_select 'img', 2 do |images|
+      assert_equal 'https://dfs.jpg', images[0].attributes['src'].value
+      assert_equal 'http://abc.png', images[1].attributes['src'].value
+    end
+  end
 end
