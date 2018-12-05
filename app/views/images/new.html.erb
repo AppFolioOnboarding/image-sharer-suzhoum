@@ -18,7 +18,9 @@
 
   <p>
     <%= form.label :image_label, 'Image URL' %><br>
-    <%= form.text_area :image_url %>
+    <%= form.text_area :image_url %><br>
+    <%= form.label :tag_list, 'Image Tags (separated by commas)' %><br>
+    <%= form.text_field :tag_list %>
   </p>
 
   <p>
