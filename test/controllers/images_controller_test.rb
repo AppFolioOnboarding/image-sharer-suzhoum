@@ -31,6 +31,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '#error_explanation', count: 1
   end
 
+  def test_create_with_tag
+    assert_difference 'Image.count', 1 do
+      post images_path, params: { image: { image_url: 'http://foo.png', tag_list: 'test1' } }
+    end
+    assert_redirected_to image_path(Image.find_by(image_url: 'http://foo.png'))
+    follow_redirect!
+    assert_select 'p', text: 'Tags: test1'
+  end
+
   def test_show
     image = Image.create(image_url: 'http://foo.png')
     get image_path(image)
