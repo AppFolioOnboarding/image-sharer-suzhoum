@@ -72,4 +72,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'https://dfs.jpg', images[1].attributes['src'].value
     end
   end
+
+  def test_destroy
+    image = Image.create!(image_url: 'http://abc.png', tag_list: 'test1, test3')
+    assert_difference 'Image.count', -1 do
+      delete image_path(image)
+    end
+    assert_redirected_to images_path
+    follow_redirect!
+    assert_select 'h1', text: 'Listing Images'
+    assert_select 'img', count: 0
+  end
 end

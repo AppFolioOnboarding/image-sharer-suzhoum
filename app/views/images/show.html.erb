@@ -1,2 +1,6 @@
 <%= image_tag @image.image_url %>
 <p>Tags: <%= raw(@image.tag_list.map { |t| link_to t, images_path(tag: t) }.join(', ')) %></p>
+<%= link_to 'Delete this image',
+               image_path(@image),
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
