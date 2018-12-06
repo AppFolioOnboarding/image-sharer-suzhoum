@@ -1,4 +1,2 @@
 <%= image_tag @image.image_url %>
-<p>Tags: <%= @image.tag_list %></p>
-
-
+<p>Tags: <%= raw(@image.tag_list.map { |t| link_to t, images_path(tag: t) }.join(', ')) %></p>
