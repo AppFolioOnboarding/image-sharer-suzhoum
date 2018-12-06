@@ -60,4 +60,16 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'http://abc.png', images[1].attributes['src'].value
     end
   end
+
+  def test_images_with_tag
+    Image.create!(image_url: 'http://abc.png', tag_list: 'test1, test3')
+    Image.create!(image_url: 'https://dfs.jpg', tag_list: 'test1, test2')
+    Image.create!(image_url: 'https://bfs.jpg', tag_list: 'test2, test3')
+
+    get images_path(tag: 'test2')
+    assert_select 'img', 2 do |images|
+      assert_equal 'https://bfs.jpg', images[0].attributes['src'].value
+      assert_equal 'https://dfs.jpg', images[1].attributes['src'].value
+    end
+  end
 end
