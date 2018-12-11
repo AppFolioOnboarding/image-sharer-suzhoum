@@ -9,3 +9,6 @@
       </tr>
     <% end %>
 </table>
+<% if @tag_flag %>
+  <h2><%= link_to('Delete Filter', images_path) %></h2>
+<% end %>

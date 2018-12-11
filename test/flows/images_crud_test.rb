@@ -61,11 +61,11 @@ class ImagesCrudTest < FlowTestCase
   test 'view images associated with a tag' do
     puppy_url1 = 'http://www.pawderosa.com/images/puppies.jpg'
     puppy_url2 = 'http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg'
-    cat_url = 'http://www.ugly-cat.com/ugly-cats/uglycat041.jpg'
+    cat_url = 'https://www.usmagazine.com/wp-content/uploads/2018/06/Smoothie-the-Cat-Instagram-zoom.jpg'
     Image.create!([
-      { url: puppy_url1, tag_list: 'superman, cute' },
-      { url: puppy_url2, tag_list: 'cute, puppy' },
-      { url: cat_url, tag_list: 'cat, ugly' }
+      { image_url: puppy_url1, tag_list: 'superman, cute' },
+      { image_url: puppy_url2, tag_list: 'cute, puppy' },
+      { image_url: cat_url, tag_list: 'cat, ugly' }
     ])
 
     images_index_page = PageObjects::Images::IndexPage.visit

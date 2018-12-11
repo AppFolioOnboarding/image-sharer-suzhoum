@@ -1,8 +1,10 @@
 class ImagesController < ApplicationController
   def index
     @images = if params[:tag]
+                @tag_flag = true
                 Image.tagged_with(params[:tag]).order(created_at: :desc)
               else
+                @tag_flag = false
                 Image.order(created_at: :desc).all
               end
   end
