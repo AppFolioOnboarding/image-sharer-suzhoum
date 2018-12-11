@@ -29,10 +29,10 @@ class ImagesCrudTest < FlowTestCase
 
   test 'delete an image' do
     cute_puppy_url = 'http://ghk.h-cdn.co/assets/16/09/980x490/landscape-1457107485-gettyimages-512366437.jpg'
-    ugly_cat_url = 'http://www.ugly-cat.com/ugly-cats/uglycat041.jpg'
+    ugly_cat_url = 'http://i0.kym-cdn.com/entries/icons/original/000/007/263/photo_cat2.jpg'
     Image.create!([
-      { url: cute_puppy_url, tag_list: 'puppy, cute' },
-      { url: ugly_cat_url, tag_list: 'cat, ugly' }
+      { image_url: cute_puppy_url, tag_list: 'puppy, cute' },
+      { image_url: ugly_cat_url, tag_list: 'cat, ugly' }
     ])
 
     images_index_page = PageObjects::Images::IndexPage.visit
