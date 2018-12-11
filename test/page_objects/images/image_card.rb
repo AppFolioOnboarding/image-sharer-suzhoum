@@ -6,7 +6,7 @@ module PageObjects
       end
 
       def tags
-        # TODO
+        node.all('td').last.text.split(" ")
       end
 
       def click_tag!(tag_name)
