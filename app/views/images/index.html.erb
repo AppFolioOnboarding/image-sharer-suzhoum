@@ -1,10 +1,14 @@
 <%= link_to("Link to submit new image", new_image_path) %>
 
 <h1>Listing Images</h1>
-
-  <% @images.each do |image| %>
-    <tr>
-      <td><%= image_tag image.image_url, class: "image-preview" %></td>
-    </tr>
-  <% end %>
+<table id="images_list" class="row">
+    <% @images.each do |image| %>
+      <tr class="js-image-card">
+          <td><%= link_to(image_tag(image.image_url, class: "image-preview"), image_path(Image.find_by(image_url: image.image_url)), class: "js-image-link")%></td>
+          <td><%=  raw(image.tag_list.map { |t| link_to t, images_path(tag: t) }.join(', ')) %></td>
+      </tr>
+    <% end %>
 </table>
+<% if @tag_flag %>
+  <h2><%= link_to('Delete Filter', images_path) %></h2>
+<% end %>
